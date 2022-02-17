@@ -1,0 +1,38 @@
+<div class="list row">
+    <button class="m-3 btn btn-sm btn-success" routerLink="/add">
+        Add New User
+    </button>
+    <div class="input-group mb-3">
+        <input
+            type="text"
+            class="form-control"
+            placeholder="Search by email"
+            [(ngModel)]="email"
+        />
+        <div class="input-group-append">
+            <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="searchUser()">
+                Search 
+            </button>
+        </div>
+    </div>
+    <div>
+        <h4>User List</h4>
+        <ul class="list-group">
+            <li
+                class="list-group-item"
+                *ngFor="let user of users; let i = index"
+                [class.active]="i == currentIndex"
+                (click)="setActiveUser(user, i)"
+            >
+                <a [routerLink]="[user.id]">{{user.email}}</a>
+            </li>
+        </ul>
+        <button class="m-3 btn btn-sm btn-danger"
+        (click)="deleteAllUsers()">
+            Delete All
+        </button>
+    </div>
+</div>
